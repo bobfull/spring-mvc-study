@@ -26,7 +26,7 @@ public class MemberConfig {
         ds.setMaxActive(10);
         ds.setTestWhileIdle(true);
         ds.setMinEvictableIdleTimeMillis(1000 * 60 * 3);
-        ds.setTimeBetweenEvictionRunsMillis(1000 * 0);
+        ds.setTimeBetweenEvictionRunsMillis(1000 * 10);
 
         return ds;
     }
