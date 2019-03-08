@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kakao
@@ -13,22 +14,23 @@
 <body>
     <h2>설문조사</h2>
     <form method="post">
-        <p>
-            1. 역할 <br/>
-            <label><input type="radio" name ="responses[0]" value="서버">서버</label>
-            <label><input type="radio" name ="responses[0]" value="클라">클라</label>
-            <label><input type="radio" name ="responses[0]" value="풀스택">풀스택</label>
-        </p>
-        <p>
-            2. 개발도구 <br/>
-            <label><input type="radio" name ="responses[1]" value="이클립스">이클립스</label>
-            <label><input type="radio" name ="responses[1]" value="인텔리제이">인텔리제이</label>
-            <label><input type="radio" name ="responses[1]" value="서브마린">서브마린</label>
-        </p>
-        <p>
-            3. 하고싶은말 <br/>
-            <input type="text" name="responses[2]">
-        </p>
+        <c:forEach var="q" items="${questions}" varStatus="status">
+            <p>
+                ${status.index + 1}. ${q.title}<br/>
+                <c:if test="${q.choice}">
+                    <c:forEach var="option" items="${q.options}">
+                        <label>
+                            <input type="radio" name="responses[${status.index}]" value="${option}">
+                            ${option}
+                        </label>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${!q.choice}">
+                    <input type="text" name="responses[${status.index}]">
+                </c:if>
+            </p>
+        </c:forEach>
+
         <p>
             <label>응답자 위치: <br>
             <input type="text" name="res.location">

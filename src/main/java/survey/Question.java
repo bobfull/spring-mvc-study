@@ -25,7 +25,7 @@ public class Question {
         return options;
     }
 
-    public boolean isCohice() {
+    public boolean isChoice() {
         return options != null && !options.isEmpty();
     }
 }

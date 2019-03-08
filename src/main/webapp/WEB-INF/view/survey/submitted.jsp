@@ -10,7 +10,7 @@
     <ul>
         <c:forEach var="response"
             items="${ansData.responses}" varStatus="status">
-            <li>${status.index + 1}번 문항 : ${response}</li>
+            <li>${status.index + 1}번문항 : ${response}</li>
         </c:forEach>
     </ul>
     <p>응답자 위치 : ${ansData.res.location}</p>
