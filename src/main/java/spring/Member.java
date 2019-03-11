@@ -49,7 +49,6 @@ public class Member {
 	}
 
 	public Boolean matchPassword(String password) {
-		//System.out.println(password + ", " + this.password);
 		if(this.password.equals(password))
 			return true;
 		else
