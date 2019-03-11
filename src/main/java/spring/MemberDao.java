@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberDao {
@@ -108,4 +109,22 @@ public class MemberDao {
 				});
 		return results;
 	}
+
+	public List<Member> selectByRegdate(LocalDateTime from, LocalDateTime to) {
+
+		List<Member> results = jdbcTemplate.query(
+				"select * from member where regdate between ? and ? order by regdate desc",
+				(ResultSet rs, int rowNum)-> {
+					Member member = new Member(rs.getString("EMAIL"),
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getTimestamp("REGDATE").toLocalDateTime());
+					member.setId(rs.getLong("ID"));
+					return member;
+				}, from, to);
+
+		return results;
+
+	}
+
 }

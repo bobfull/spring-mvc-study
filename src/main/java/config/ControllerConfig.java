@@ -6,10 +6,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import spring.AuthService;
 import spring.ChangePasswordService;
+import spring.MemberDao;
 import spring.MemberRegisterService;
 
 @Configuration
 public class ControllerConfig {
+
+    @Autowired
+    private MemberDao memberDao;
 
     @Autowired
     private MemberRegisterService memberRegSvc;
@@ -60,6 +64,14 @@ public class ControllerConfig {
     public ChangePwdController changePwdController() {
         ChangePwdController controller = new ChangePwdController();
         controller.setChangePasswordService(changePwdService);
+
+        return controller;
+    }
+
+    @Bean
+    public MemberListController memberListController() {
+        MemberListController controller = new MemberListController();
+        controller.setMemberDao(memberDao);
 
         return controller;
     }
