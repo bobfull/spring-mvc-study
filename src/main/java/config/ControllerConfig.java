@@ -1,12 +1,10 @@
 package config;
 
-import controller.RegisterController;
-import controller.SurveyController;
+import controller.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import controller.HelloController;
-import controller.IndexController;
+import spring.AuthService;
 import spring.MemberRegisterService;
 
 @Configuration
@@ -14,6 +12,9 @@ public class ControllerConfig {
 
     @Autowired
     private MemberRegisterService memberRegSvc;
+
+    @Autowired
+    private AuthService authService;
 
     @Bean
     public HelloController helloController() {
@@ -36,5 +37,13 @@ public class ControllerConfig {
     @Bean
     public SurveyController surveyController() {
         return new SurveyController();
+    }
+
+    @Bean
+    public LoginController loginController() {
+        LoginController controller = new LoginController();
+        controller.setAuthService(authService);
+
+        return controller;
     }
 }
