@@ -31,7 +31,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public Validator getValidator() {
         return new RegisterRequestValidator();
     }
-ㄴ
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
