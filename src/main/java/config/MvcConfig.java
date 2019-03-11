@@ -1,6 +1,7 @@
 package config;
 
 import controller.RegisterRequestValidator;
+import interceptor.AuthCheckInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -30,6 +31,16 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public Validator getValidator() {
         return new RegisterRequestValidator();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(authCheckInterceptor()).addPathPatterns("/edit/**");
+    }
+
+    @Bean
+    public AuthCheckInterceptor authCheckInterceptor() {
+        return new AuthCheckInterceptor();
     }
 
     @Bean

@@ -25,11 +25,11 @@ public class ChangePwdController {
 
     @GetMapping
     public String form(@ModelAttribute("command") ChangePwdCommand pwdCommand, HttpSession session) {
-        AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+      /*  AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
 
         if(authInfo == null){
             return "redirect:/login";
-        }
+        }*/
 
         return "edit/changePwdForm";
     }
