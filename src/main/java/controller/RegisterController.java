@@ -37,7 +37,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register/step3")
-    public String handleStep3(@ModelAttribute("formData") RegisterRequest regReq) {
+    public String handleStep3(RegisterRequest regReq) {
         try {
             memberRegisterService.regist(regReq);
             return "register/step3";
